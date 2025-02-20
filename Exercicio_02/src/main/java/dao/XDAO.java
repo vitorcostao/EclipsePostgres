@@ -22,7 +22,7 @@ public class XDAO extends DAO {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "INSERT INTO usuario (codigo, login, senha, sexo) "
+			String sql = "INSERT INTO x (codigo, login, senha, sexo) "
 				       + "VALUES ("+usuario.getCodigo()+ ", '" + usuario.getLogin() + "', '"  
 				       + usuario.getSenha() + "', '" + usuario.getSexo() + "');";
 			System.out.println(sql);
@@ -41,7 +41,7 @@ public class XDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM produto WHERE id=" + codigo;
+			String sql = "SELECT * FROM x WHERE codigo =" + codigo;
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
@@ -81,7 +81,7 @@ public class XDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM usuario" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
+			String sql = "SELECT * FROM x" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
@@ -101,7 +101,7 @@ public class XDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM usuario WHERE usuario.sexo LIKE 'M'";
+			String sql = "SELECT * FROM x WHERE x.sexo LIKE 'M'";
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
@@ -120,7 +120,7 @@ public class XDAO extends DAO {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "UPDATE usuario SET login = '" + usuario.getLogin() + "', senha = '"  
+			String sql = "UPDATE x SET login = '" + usuario.getLogin() + "', senha = '"  
 				       + usuario.getSenha() + "', sexo = '" + usuario.getSexo() + "'"
 					   + " WHERE codigo = " + usuario.getCodigo();
 			System.out.println(sql);
@@ -137,7 +137,7 @@ public class XDAO extends DAO {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "DELETE FROM usuario WHERE codigo = " + codigo;
+			String sql = "DELETE FROM x WHERE codigo = " + codigo;
 			System.out.println(sql);
 			st.executeUpdate(sql);
 			st.close();
@@ -154,7 +154,7 @@ public class XDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM usuario WHERE login LIKE '" + login + "' AND senha LIKE '" + senha  + "'";
+			String sql = "SELECT * FROM x WHERE login LIKE '" + login + "' AND senha LIKE '" + senha  + "'";
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery(sql);
 			resp = rs.next();
